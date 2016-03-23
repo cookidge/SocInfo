@@ -1,0 +1,4 @@
+﻿.container {padding:0%;}
+.navbar-collapse { padding: 0; } /* forces the nav to take full container width */
+.navbar-nav { display: table; width: 100%; margin: 0; }
+.navbar-nav > li { display: table-cell; text-align: center; float: none; }

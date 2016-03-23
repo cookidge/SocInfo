@@ -1,0 +1,130 @@
+﻿@model Tuple<List<SocInfo.Models.Player>, List<SocInfo.Models.Fixture>, SocInfo.Models.Team>
+@{
+    ViewBag.Title = ViewBag.TeamName;
+}
+
+<br />
+<br />
+<br />
+
+<h2>@ViewBag.TeamName</h2>
+
+<br />
+
+<div class="row">
+    
+    <div class="col-md-2">
+        <br/>
+        
+        <img src="@Model.Item3.crestUrl" alt="@Model.Item3.name logo" height="150" width="150" />
+    </div>
+
+    <div class="col-md-10">
+        <h3>@ViewBag.TeamName Players</h3>
+
+        <table class="table">
+            <tr>
+                <th>
+                    Player
+                </th>
+                <th>
+                    Nation
+                </th>
+                <th>
+                    Position
+                </th>
+                <th>
+                    Number
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+
+            @foreach (var player in Model.Item1.Take(5))
+            {
+                <tr>
+                    <td>
+                        @player.name
+                    </td>
+                    <td>
+                        @player.nationality
+                    </td>
+                    <td>
+                        @player.position
+                    </td>
+                    <td>  
+                        @player.jerseyNumber
+                    </td>
+                    <td> 
+                        @player.marketValue
+                    </td>
+                </tr>
+            }
+        </table>
+        <p><a class="btn btn-default" href="">View all &raquo;</a></p>
+    </div>
+    
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+        <h3>@ViewBag.TeamName Fixtures</h3>
+
+        <table class="table">
+            <tr>
+                <th>Date</th>
+                <th>Matchday</th>
+                <th></th>
+                <th>Home Team</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>Away Team</th>
+                <th></th>
+            </tr>
+
+            @foreach (var teamFixture in Model.Item2.Take(10))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => teamFixture.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => teamFixture.matchday)
+                    </td>
+                    <td>
+                        <!-- logo -->
+                        <img src="@Html.Action("GetTeamInfo", "Teams", new { teamName = teamFixture.homeTeamName, info = "" })" alt="" height="40" width="40" />
+                    </td>
+                    <td>
+                        @Html.ActionLink(teamFixture.homeTeamName, "../Team/Index", new { team = teamFixture.homeTeamName })
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => teamFixture.homeTeamGoals)
+                    </td>
+                    <td>v</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => teamFixture.awayTeamGoals)
+                    </td>
+                    <td>
+                        @Html.ActionLink(teamFixture.awayTeamName, "../Team/Index", new { team = teamFixture.awayTeamName })
+                    </td>
+                    <td>
+                        <!-- logo -->
+                        <img src="@Html.Action("GetTeamInfo", "Teams", new { teamName = teamFixture.awayTeamName, info = "" })" alt="" height="40" width="40" />
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <p><a class="btn btn-default" href="">View all &raquo;</a></p>
+
+    </div>
+
+
+
+</div>
+

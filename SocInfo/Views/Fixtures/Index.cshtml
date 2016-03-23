@@ -1,0 +1,92 @@
+﻿@model IEnumerable< SocInfo.Models.Fixture >
+
+@{
+    ViewBag.Title = "Fixtures";
+}
+
+<br />
+<br />
+<br />
+
+<h2>Fixtures</h2>
+
+<br/>
+
+<div class="navbar">
+    <div class="container">
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+
+                <li><a href="?date=@ViewBag.Date1&day=@ViewBag.Day1"><b>@ViewBag.Day1</b><br /><span>@ViewBag.Date1</span></a></li>
+                <li><a href="?date=@ViewBag.Date2&day=@ViewBag.Day2"><b>@ViewBag.Day2</b><br /><span>@ViewBag.Date2</span></a></li>
+                <li><a href="?date=@ViewBag.Date3&day=@ViewBag.Day3"><b>@ViewBag.Day3</b><br /><span>@ViewBag.Date3</span></a></li>
+                <li><a href="?date=@ViewBag.Date4&day=@ViewBag.Day4"><b>@ViewBag.Day4</b><br /><span>@ViewBag.Date4</span></a></li>
+                <li><a href="?date=@ViewBag.Date5&day=@ViewBag.Day5"><b>@ViewBag.Day5</b><br /><span>@ViewBag.Date5</span></a></li>
+                <li><a href="?date=@ViewBag.Date6&day=@ViewBag.Day6"><b>@ViewBag.Day6</b><br /><span>@ViewBag.Date6</span></a></li>
+                <li><a href="?date=@ViewBag.Date7&day=@ViewBag.Day7"><b>@ViewBag.Day7</b><br /><span>@ViewBag.Date7</span></a></li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+
+<h3>@ViewBag.CurrentDay - @ViewBag.CurrentDate</h3>
+
+<br />
+
+@if (Model.Count() > 0)
+{
+
+    <table class="table">
+        <tr>
+            <th>Date</th>
+            <th>Matchday</th>
+            <th></th>
+            <th>Home Team</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th>Away Team</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.matchday)
+            </td>
+            <td>
+                <!-- logo -->
+                <img src="@Html.Action("GetTeamInfo", "Teams", new { teamName = item.homeTeamName, info = "" })" alt="" height="40" width="40" />
+            </td>
+            <td> 
+                @Html.ActionLink(item.homeTeamName, "../Team/Index", new { team = item.homeTeamName })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.homeTeamGoals)
+            </td>
+            <td>v</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.awayTeamGoals)
+            </td>
+            <td>
+                @Html.ActionLink(item.awayTeamName, "../Team/Index", new { team = item.awayTeamName })
+            </td>
+            <td>
+                <!-- logo -->
+                <img src="@Html.Action("GetTeamInfo", "Teams", new { teamName = item.awayTeamName, info = "" })" alt="" height="40" width="40" />
+            </td>
+        </tr>
+        }
+
+    </table>
+} else
+{
+    <p>There are no fixtures on this day.</p>
+}
+
+

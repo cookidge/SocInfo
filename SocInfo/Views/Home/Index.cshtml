@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model Tuple<List<SocInfo.Models.Position>, List<SocInfo.Models.Fixture>, List<SocInfo.Models.Team>>
+
+<br />
+<br />
+<br />
+<br />
+
+<div class="jumbotron">
+    <h1>Soccer Info</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Standings</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    Rank
+                </th>
+                <th>
+                    Team
+                </th>
+                <th>
+                    Played
+                </th>
+                <th>
+                    Points
+                </th>
+            </tr>
+
+        @foreach (var position in Model.Item1.Take(5))
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => position.rank)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => position.team)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => position.playedGames)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => position.points)
+                </td>
+            </tr>
+        }
+            
+        </table>
+        <p><a class="btn btn-default" href="/League">Full table &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Today's Fixtures</h2>
+        
+        <table class="table">
+            <tr>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Home
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                </th>
+                <th>
+                    Away
+                </th>
+            </tr>
+
+            @foreach (var fixture in Model.Item2.Take(5))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => fixture.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => fixture.homeTeamName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => fixture.homeTeamGoals)
+                    </td>
+                    <td>v</td>
+                    <td>
+                        @Html.DisplayFor(modelItem => fixture.awayTeamGoals)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => fixture.awayTeamName)
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+        <p><a class="btn btn-default" href="/Fixtures">More fixtures &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Teams</h2>
+        <table class="table">
+            <tr>
+                <th>
+                    Team
+                </th>
+                <th>
+                </th>
+                <th>
+                    Value
+                </th>
+            </tr>
+
+            @foreach (var team in Model.Item3.Take(5))
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => team.name)
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => team.squadMarketValue)
+                    </td>
+                </tr>
+            }
+        </table>
+        <p><a class="btn btn-default" href="/Teams">All teams &raquo;</a></p>
+    </div>
+</div>
