@@ -14,7 +14,7 @@ namespace SocInfo.Controllers
         // GET: Team
         public ActionResult Index(string team)
         {
-            team = (team == "") ? "Manchester United FC" : team;
+            team = (team == "") ? "Newcastle United FC" : team;
 
             ViewBag.TeamName = team;
 

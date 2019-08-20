@@ -48,7 +48,7 @@ namespace SocInfo.Controllers
         public List<Fixture> DateFixtures(string date)
         {
             // Return in order of date
-            return DateFixtureRequest("/v1/soccerseasons/398/fixtures?timeFrame=n7", date);
+            return DateFixtureRequest("/v1/soccerseasons/426/fixtures?timeFrame=n7", date);
         }
 
         // TeamFixtureRequest method

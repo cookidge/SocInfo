@@ -27,7 +27,7 @@ namespace SocInfo.Controllers
             RestClient client = new RestClient("http://api.football-data.org");
 
             // Create request
-            RestRequest request = new RestRequest("/v1/soccerseasons/398/leagueTable", Method.GET);
+            RestRequest request = new RestRequest("/v1/soccerseasons/426/leagueTable", Method.GET);
             request.AddHeader("X-Auth-Token", "dd3e9cffe47c403e8b485b7a536874e0");
             request.AddHeader("X-Response-Control", "minified");
 
